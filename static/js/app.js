@@ -27,13 +27,13 @@ function init()
         
                 
     //add text to each selection 
-    id.text("id:"+data.metadata[0].id.toString());
-    ethnicity.text("ethnicity:"+data.metadata[0].ethnicity.toString());
-    gender.text("gender:"+data.metadata[0].gender.toString());
-    age.text("age:"+data.metadata[0].age.toString());
-    location.text("location:"+data.metadata[0].location.toString());
-    bbtype.text("bbtype:"+data.metadata[0].bbtype.toString());
-    wfreq.text("wfreq:"+data.metadata[0].wfreq.toString());
+    id.text("id:"+data.metadata[0].id);
+    ethnicity.text("ethnicity:"+data.metadata[0].ethnicity);
+    gender.text("gender:"+data.metadata[0].gender);
+    age.text("age:"+data.metadata[0].age);
+    location.text("location:"+data.metadata[0].location);
+    bbtype.text("bbtype:"+data.metadata[0].bbtype);
+    wfreq.text("wfreq:"+data.metadata[0].wfreq);
     // plot the gauge
     var data1=[
      {
@@ -267,6 +267,7 @@ function submit(){
                     // Plot the chart to a div tag with bar
                     Plotly.newPlot("bar",chartdata2,layout2);
                 }
+                // if there are 2 sample_values
                 else if (data.samples[i].sample_values.length===2){ 
                     //Plot the bar   
                     var trace11={
@@ -290,6 +291,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData11, layout11);
 
                 }
+                 // if there are 3 sample_values
                 else if (data.samples[i].sample_values.length===3){ 
                     //Plot the bar   
                     var trace12={
@@ -313,6 +315,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData12, layout12);
 
                 }
+                 // if there are 4 sample_values
                 else if (data.samples[i].sample_values.length===4){ 
                     //Plot the bar   
                     var trace13={
@@ -336,6 +339,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData13, layout13);
 
                 }
+                 // if there are 5 sample_values
                 else if (data.samples[i].sample_values.length===5){ 
                     //Plot the bar   
                     var trace14={
@@ -359,6 +363,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData14, layout14);
 
                 }
+                 // if there are 6 sample_values
                 else if (data.samples[i].sample_values.length===6){ 
                     //Plot the bar   
                     var trace15={
@@ -382,6 +387,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData15, layout15);
 
                 }
+                 // if there are 7 sample_values
                 else if (data.samples[i].sample_values.length===7){ 
                     //Plot the bar   
                     var trace16={
@@ -405,6 +411,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData16, layout16);
 
                 }
+                 // if there are 8 sample_values
                 else if (data.samples[i].sample_values.length===8){ 
                     //Plot the bar   
                     var trace17={
@@ -428,6 +435,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData17, layout17);
 
                 }
+                 // if there are 9 sample_values
                 else if (data.samples[i].sample_values.length===9){ 
                     //Plot the bar   
                     var trace18={
@@ -451,6 +459,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData18, layout18);
 
                 }
+                 // if there is 0 sample_value
                 else if (data.samples[i].sample_values.length===0){ 
                     //Plot the bar   
                     var trace19={
@@ -474,7 +483,7 @@ function submit(){
                        Plotly.newPlot("bar", chartData19, layout19);
 
                 }
-                // if there are over 10 sample_values
+                // if there are 10 or over 10 sample_values
                 else{ 
                     //Plot the bar   
                     var trace1={
