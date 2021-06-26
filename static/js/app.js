@@ -1,21 +1,20 @@
-
+// read json file
 d3.json("samples.json").then((data)=>{
-    
+    // select the selDataset
     var selectID=d3.select("#selDataset");
-    
+    // loop through the data.names
     for (i=0;i<153;i++){
-    
+        // append option to selDataset and add text of data.names
         selectID.append("option").text(data.names[i]);     
 };
-
+// On change to the document object model, call submit()
  d3.selectAll("#selDataset").on("change",submit);  
 });
+// define function init()
 function init()
-{
+{   
+    // create variables according to selection of different ids
     
-    
-    var dataset=d3.select("#selDataset").node().value;
-    var metadata=d3.select("#sample-metadata");
     var id=d3.select("#id");
     var ethnicity=d3.select("#ethnicity");
     var gender=d3.select("#gender");
@@ -23,11 +22,11 @@ function init()
     var location=d3.select("#location");
     var bbtype=d3.select("#bbtype");
     var wfreq=d3.select("#wfreq");
-
+    // read json file
     d3.json("samples.json").then((data)=>{
         
                 
-                
+    //add text to each selection 
     id.text("id:"+data.metadata[0].id.toString());
     ethnicity.text("ethnicity:"+data.metadata[0].ethnicity.toString());
     gender.text("gender:"+data.metadata[0].gender.toString());
@@ -35,7 +34,7 @@ function init()
     location.text("location:"+data.metadata[0].location.toString());
     bbtype.text("bbtype:"+data.metadata[0].bbtype.toString());
     wfreq.text("wfreq:"+data.metadata[0].wfreq.toString());
-
+    // plot the gauge
     var data1=[
      {
         type:"indicator",
@@ -76,28 +75,26 @@ function init()
         paper_bgcolor:"white",
         font:{color:"darkblue",family:"Arial"}
         };
+    //Plot the chart to a div tag with id gauge 
     Plotly.newPlot("gauge",data1,layout);
 
-                
+    //create variables of sample_values  
     var data2=data.samples[0].sample_values; 
-               
+    //get the first 10 items    
     var data3=data2.slice(0,10);
+    // reverse the 10 items
     var data4=data3.reverse();
+    // get otu_ids
     var otuid=data.samples[0].otu_ids              
-                
+    //Plot horizontal bar    
     var trace1={
         x:data4,
         text:[data.samples[0].otu_labels[9],data.samples[0].otu_labels[8],data.samples[0].otu_labels[7],data.samples[0].otu_labels[6],data.samples[0].otu_labels[5],data.samples[0].otu_labels[4],data.samples[0].otu_labels[3],data.samples[0].otu_labels[2],data.samples[0].otu_labels[1],data.samples[0].otu_labels[0]],                    
         name:"otu",
         type:"bar",
         orientation:"h"
-                };
-              
-
-                
-    var chartData = [trace1];
-                
-               
+                };           
+    var chartData = [trace1];          
     var layout1 = {
         title: "Top 10 Bacteria Cultures Found",
         yaxis:{
@@ -107,8 +104,10 @@ function init()
              }
         };
 
-               
+    //Plot the chart to a div tag with id bar   
     Plotly.newPlot("bar", chartData, layout1);
+
+    // Plot the bubble chart
     var trace2={
         x:otuid,
         y:data2,
@@ -127,20 +126,20 @@ function init()
             title: "OTU ID",
                 }
                 }
+    //Plot the chart to a div tag with id bubble 
     Plotly.newPlot("bubble",chartdata2,layout2);
         
-
-    d3.selectAll("#selDataset").on("change",submit);
-            
-        
+    //On change to the document object model, call submit()
+    d3.selectAll("#selDataset").on("change",submit); 
     });
  
 }
+// Define submit()
 function submit(){
+    // prevent the page from refreshing
     d3.event.preventDefault();
-    
+    // create variabels of selections of different ids
     var dataset=d3.select("#selDataset").node().value;
-    var metadata=d3.select("#sample-metadata");
     var id=d3.select("#id");
     var ethnicity=d3.select("#ethnicity");
     var gender=d3.select("#gender");
@@ -148,23 +147,53 @@ function submit(){
     var location=d3.select("#location");
     var bbtype=d3.select("#bbtype");
     var wfreq=d3.select("#wfreq");
-
+    // read json file
     d3.json("samples.json").then((data)=>{
+        // loop through items of data.metadata
         for (i=0;i<153;i++){
-            console.log(dataset.toString());
-            console.log(data.metadata[i].id.toString());            
+            //set condition of if statement     
             if (dataset===data.metadata[i].id.toString()){
-                console.log(dataset);
-                
-                console.log(data.metadata[i]);
+                // add text to each selection of id
                id.text("id:"+data.metadata[i].id.toString());
-               ethnicity.text("ethnicity:"+data.metadata[i].ethnicity.toString());
-               gender.text("gender:"+data.metadata[i].gender.toString());
-               age.text("age:"+data.metadata[i].age.toString());
-               location.text("location:"+data.metadata[i].location.toString());
-               bbtype.text("bbtype:"+data.metadata[i].bbtype.toString());
-               wfreq.text("wfreq:"+data.metadata[i].wfreq.toString());
-
+               if (data.metadata[i].ethnicity===null){
+                ethnicity.text("ethnicity:"+"null")
+               }
+               else{
+                ethnicity.text("ethnicity:"+data.metadata[i].ethnicity.toString())
+               };
+               if (data.metadata[i].gender===null){
+                gender.text("gender:"+"null")
+               }
+               else{
+                gender.text("gender:"+data.metadata[i].gender.toString())
+               };
+               if (data.metadata[i].age===null){
+                age.text("age:"+"null")
+               }
+               else{
+                age.text("age:"+data.metadata[i].age.toString())
+               };
+               
+               if (data.metadata[i].location===null){
+                location.text("location:"+"null")
+               }
+               else{
+                location.text("location:"+data.metadata[i].location.toString())
+               };
+               if (data.metadata[i].bbtype===null){
+                bbtype.text("bbtype:"+"null")
+               }
+               else{
+                bbtype.text("bbtype:"+data.metadata[i].bbtype.toString())
+               };
+               if (data.metadata[i].wfreq===null){
+                wfreq.text("wfreq:"+"null")
+               }
+               else{
+                wfreq.text("wfreq:"+data.metadata[i].wfreq.toString())
+               };
+               
+                // plot the gauge
                 var data1=[
                     {
                     type:"indicator",
@@ -206,14 +235,19 @@ function submit(){
                     paper_bgcolor:"white",
                     font:{color:"darkblue",family:"Arial"}
                 };
+                //Plot the chart to a div tag with id gauge
                 Plotly.newPlot("gauge",data1,layout);
-                
+                // get sample_values
                 var data2=data.samples[i].sample_values;
+                // get the first 10 items of sample_values
                 var data3=data2.slice(0,10);
+                // reverse the 10 items
                 var data4=data3.reverse();
+                // get otu_ids
                 var otuid=data.samples[i].otu_ids;
-
+                // if there is only 1 sample_value
                 if (data.samples[i].sample_values.length===1){
+                    // Plot the bar
                     var trace2={
                         x:data.samples[i].sample_values,
                         text:data.samples[i].otu_labels,
@@ -225,14 +259,224 @@ function submit(){
                     var layout2={
                         title:"Bacteria Culture Found",
                         yaxis:{
-                            
-                            title:"OTU "+data.samples[i].otu_ids
+                            tickvals:[0],
+                            ticktext:["OTU "+data.samples[i].otu_ids]
                             
                         }
                     }
+                    // Plot the chart to a div tag with bar
                     Plotly.newPlot("bar",chartdata2,layout2);
                 }
-                else{           
+                else if (data.samples[i].sample_values.length===2){ 
+                    //Plot the bar   
+                    var trace11={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData11 = [trace11];
+                    var layout11 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1],
+                            ticktext:["OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData11, layout11);
+
+                }
+                else if (data.samples[i].sample_values.length===3){ 
+                    //Plot the bar   
+                    var trace12={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData12 = [trace12];
+                    var layout12 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1,2],
+                            ticktext:["OTU "+data.samples[i].otu_ids[2],"OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData12, layout12);
+
+                }
+                else if (data.samples[i].sample_values.length===4){ 
+                    //Plot the bar   
+                    var trace13={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[3],data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData13 = [trace13];
+                    var layout13 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1,2,3],
+                            ticktext:["OTU "+data.samples[i].otu_ids[3],"OTU "+data.samples[i].otu_ids[2],"OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData13, layout13);
+
+                }
+                else if (data.samples[i].sample_values.length===5){ 
+                    //Plot the bar   
+                    var trace14={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[4],data.samples[i].otu_labels[3],data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData14 = [trace14];
+                    var layout14 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1,2,3,4],
+                            ticktext:["OTU "+data.samples[i].otu_ids[4],"OTU "+data.samples[i].otu_ids[3],"OTU "+data.samples[i].otu_ids[2],"OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData14, layout14);
+
+                }
+                else if (data.samples[i].sample_values.length===6){ 
+                    //Plot the bar   
+                    var trace15={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[5],data.samples[i].otu_labels[4],data.samples[i].otu_labels[3],data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData15 = [trace15];
+                    var layout15 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1,2,3,4,5],
+                            ticktext:["OTU "+data.samples[i].otu_ids[5],"OTU "+data.samples[i].otu_ids[4],"OTU "+data.samples[i].otu_ids[3],"OTU "+data.samples[i].otu_ids[2],"OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData15, layout15);
+
+                }
+                else if (data.samples[i].sample_values.length===7){ 
+                    //Plot the bar   
+                    var trace16={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[6],data.samples[i].otu_labels[5],data.samples[i].otu_labels[4],data.samples[i].otu_labels[3],data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData16 = [trace16];
+                    var layout16 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1,2,3,4,5,6],
+                            ticktext:["OTU "+data.samples[i].otu_ids[6],"OTU "+data.samples[i].otu_ids[5],"OTU "+data.samples[i].otu_ids[4],"OTU "+data.samples[i].otu_ids[3],"OTU "+data.samples[i].otu_ids[2],"OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData16, layout16);
+
+                }
+                else if (data.samples[i].sample_values.length===8){ 
+                    //Plot the bar   
+                    var trace17={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[7],data.samples[i].otu_labels[6],data.samples[i].otu_labels[5],data.samples[i].otu_labels[4],data.samples[i].otu_labels[3],data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData17 = [trace17];
+                    var layout17 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1,2,3,4,5,6,7],
+                            ticktext:["OTU "+data.samples[i].otu_ids[7],"OTU "+data.samples[i].otu_ids[6],"OTU "+data.samples[i].otu_ids[5],"OTU "+data.samples[i].otu_ids[4],"OTU "+data.samples[i].otu_ids[3],"OTU "+data.samples[i].otu_ids[2],"OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData17, layout17);
+
+                }
+                else if (data.samples[i].sample_values.length===9){ 
+                    //Plot the bar   
+                    var trace18={
+                        x:data4,
+                        text:[data.samples[i].otu_labels[8],data.samples[i].otu_labels[7],data.samples[i].otu_labels[6],data.samples[i].otu_labels[5],data.samples[i].otu_labels[4],data.samples[i].otu_labels[3],data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData18 = [trace18];
+                    var layout18 = {
+                        title: "Top Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0,1,2,3,4,5,6,7,8],
+                            ticktext:["OTU "+data.samples[i].otu_ids[8],"OTU "+data.samples[i].otu_ids[7],"OTU "+data.samples[i].otu_ids[6],"OTU "+data.samples[i].otu_ids[5],"OTU "+data.samples[i].otu_ids[4],"OTU "+data.samples[i].otu_ids[3],"OTU "+data.samples[i].otu_ids[2],"OTU "+data.samples[i].otu_ids[1],"OTU "+data.samples[i].otu_ids[0]]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData18, layout18);
+
+                }
+                else if (data.samples[i].sample_values.length===0){ 
+                    //Plot the bar   
+                    var trace19={
+                        x:0,
+                        text:[0],                    
+                        name:"otu",
+                        type:"bar",
+                        orientation:"h"
+                    };
+                    var chartData19 = [trace19];
+                    var layout19 = {
+                        title: "No Bacteria Cultures Found",
+                        yaxis:{
+                            tickmode:"array",
+                            tickvals:[0],
+                            ticktext:[0]
+                        }
+                       };
+       
+                        //Plot the Chart to a div tag with bar
+                       Plotly.newPlot("bar", chartData19, layout19);
+
+                }
+                // if there are over 10 sample_values
+                else{ 
+                    //Plot the bar   
                     var trace1={
                         x:data4,
                         text:[data.samples[i].otu_labels[9],data.samples[i].otu_labels[8],data.samples[i].otu_labels[7],data.samples[i].otu_labels[6],data.samples[i].otu_labels[5],data.samples[i].otu_labels[4],data.samples[i].otu_labels[3],data.samples[i].otu_labels[2],data.samples[i].otu_labels[1],data.samples[i].otu_labels[0]],                    
@@ -250,10 +494,11 @@ function submit(){
                         }
                        };
        
-                      
+                        //Plot the Chart to a div tag with bar
                        Plotly.newPlot("bar", chartData, layout1);
 
                 }
+            // plot the bubble chart
             var trace3={
                     x:otuid,
                     y:data2,
@@ -271,19 +516,15 @@ function submit(){
                         title: "OTU ID",
                     }
                 }
-                    Plotly.newPlot("bubble",chartdata3,layout3);    
+                // Plot the Chart to a div tag with bubble
+                Plotly.newPlot("bubble",chartdata3,layout3);    
                         
                     
                 
                 
             break;
-            id.text("");
-            ethnicity.text("");
-            gender.text("");
-            age.text("");
-            location.text("");
-            bbtype.text("");
-            wfreq.text("");
+            
+           
             
             }
         }
