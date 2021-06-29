@@ -38,3 +38,9 @@ Use otu_labels for the text values.
 
 ![image](https://user-images.githubusercontent.com/79819331/123823963-a26dd600-d8cb-11eb-88f8-508c925be6db.png)
 
+
+Display the sample metadata, i.e., an individual's demographic information.
+
+![image](https://user-images.githubusercontent.com/79819331/123824393-01334f80-d8cc-11eb-8bb2-e7249821b1ce.png)
+
+
