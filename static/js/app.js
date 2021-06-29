@@ -154,7 +154,7 @@ function submit(){
             //set condition of if statement     
             if (dataset===data.metadata[i].id.toString()){
                 // add text to each selection of id
-               id.text("id:"+data.metadata[i].id.toString());
+               id.text("id:"+data.metadata[i].id);
                if (data.metadata[i].ethnicity===null){
                 ethnicity.text("ethnicity:"+"null")
                }
@@ -279,7 +279,7 @@ function submit(){
                     };
                     var chartData11 = [trace11];
                     var layout11 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1],
@@ -303,7 +303,7 @@ function submit(){
                     };
                     var chartData12 = [trace12];
                     var layout12 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1,2],
@@ -327,7 +327,7 @@ function submit(){
                     };
                     var chartData13 = [trace13];
                     var layout13 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1,2,3],
@@ -351,7 +351,7 @@ function submit(){
                     };
                     var chartData14 = [trace14];
                     var layout14 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1,2,3,4],
@@ -375,7 +375,7 @@ function submit(){
                     };
                     var chartData15 = [trace15];
                     var layout15 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1,2,3,4,5],
@@ -399,7 +399,7 @@ function submit(){
                     };
                     var chartData16 = [trace16];
                     var layout16 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1,2,3,4,5,6],
@@ -423,7 +423,7 @@ function submit(){
                     };
                     var chartData17 = [trace17];
                     var layout17 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1,2,3,4,5,6,7],
@@ -447,7 +447,7 @@ function submit(){
                     };
                     var chartData18 = [trace18];
                     var layout18 = {
-                        title: "Top Bacteria Cultures Found",
+                        title: "Bacteria Cultures Found",
                         yaxis:{
                             tickmode:"array",
                             tickvals:[0,1,2,3,4,5,6,7,8],
