@@ -8,7 +8,7 @@ d3.json("samples.json").then((data)=>{
         selectID.append("option").text(data.names[i]);     
 };
 // On change to the document object model, call submit()
-
+d3.selectAll("#selDataset").on("change",submit);
 });
 // define function init()
 function init()
