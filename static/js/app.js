@@ -159,7 +159,7 @@ function submit(){
                 ethnicity.text("ethnicity:"+"null")
                }
                else{
-                ethnicity.text("ethnicity:"+data.metadata[i].ethnicity.toString())
+                ethnicity.text("ethnicity:"+data.metadata[i].ethnicity)
                };
                if (data.metadata[i].gender===null){
                 gender.text("gender:"+"null")
@@ -190,7 +190,7 @@ function submit(){
                 wfreq.text("wfreq:"+"null")
                }
                else{
-                wfreq.text("wfreq:"+data.metadata[i].wfreq.toString())
+                wfreq.text("wfreq:"+data.metadata[i].wfreq)
                };
                
                 // plot the gauge
