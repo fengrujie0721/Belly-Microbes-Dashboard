@@ -130,7 +130,7 @@ function init()
     Plotly.newPlot("bubble",chartdata2,layout2);
         
     //On change to the document object model, call submit()
-    d3.selectAll("#selDataset").on("change",submit); 
+     
     });
  
 }
