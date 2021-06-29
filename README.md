@@ -41,6 +41,13 @@ Use otu_labels for the text values.
 
 Display the sample metadata, i.e., an individual's demographic information.
 
+
 ![image](https://user-images.githubusercontent.com/79819331/123824393-01334f80-d8cc-11eb-8bb2-e7249821b1ce.png)
+
+
+Update all of the plots any time that a new sample is selected.
+
+![image](https://user-images.githubusercontent.com/79819331/123824662-3f307380-d8cc-11eb-82cb-e639bfb2b2dd.png)
+
 
 
