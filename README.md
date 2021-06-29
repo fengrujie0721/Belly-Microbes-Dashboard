@@ -36,6 +36,7 @@ Use otu_ids for the marker colors.
 
 Use otu_labels for the text values.
 
+
 ![image](https://user-images.githubusercontent.com/79819331/123823963-a26dd600-d8cb-11eb-88f8-508c925be6db.png)
 
 
@@ -46,6 +47,8 @@ Display the sample metadata, i.e., an individual's demographic information.
 
 
 Update all of the plots any time that a new sample is selected.
+
+
 
 ![image](https://user-images.githubusercontent.com/79819331/123824662-3f307380-d8cc-11eb-82cb-e639bfb2b2dd.png)
 
