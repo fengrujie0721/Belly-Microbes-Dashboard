@@ -165,26 +165,26 @@ function submit(){
                 gender.text("gender:"+"null")
                }
                else{
-                gender.text("gender:"+data.metadata[i].gender.toString())
+                gender.text("gender:"+data.metadata[i].gender)
                };
                if (data.metadata[i].age===null){
                 age.text("age:"+"null")
                }
                else{
-                age.text("age:"+data.metadata[i].age.toString())
+                age.text("age:"+data.metadata[i].age)
                };
                
                if (data.metadata[i].location===null){
                 location.text("location:"+"null")
                }
                else{
-                location.text("location:"+data.metadata[i].location.toString())
+                location.text("location:"+data.metadata[i].location)
                };
                if (data.metadata[i].bbtype===null){
                 bbtype.text("bbtype:"+"null")
                }
                else{
-                bbtype.text("bbtype:"+data.metadata[i].bbtype.toString())
+                bbtype.text("bbtype:"+data.metadata[i].bbtype)
                };
                if (data.metadata[i].wfreq===null){
                 wfreq.text("wfreq:"+"null")
